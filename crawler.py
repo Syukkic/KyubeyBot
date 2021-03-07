@@ -40,13 +40,13 @@ def collect_art_id(artists_id):
             COUNTER += 1
             print(COUNTER)
         print(len(artwork_links))
-
-        with open('artwork_links.pkl', "wb") as f:
-            pickle.dump(artwork_links, f)
-
         browser.quit()
+
+    with open('artwork_links.pkl', "wb") as f:
+        pickle.dump(artwork_links, f)
 
 
 if __name__ == '__main__':
-    artists_id = ['30959821', '2188232']  # pixiv user id
+    artists_id = ['30959821', '2188232', '10453155', '32008', '8517776',
+                  '71312', '6269645', '1056186', '13695413', '2254287']  # pixiv user id
     collect_art_id(artists_id)
