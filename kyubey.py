@@ -8,7 +8,7 @@ from telegram.ext import (
     CallbackContext,
     MessageHandler)
 
-from random import randint
+from random import choice
 
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
@@ -17,15 +17,13 @@ logger = logging.getLogger(__name__)
 
 
 def start(update: Update, context: CallbackContext) -> None:
-    update.message.reply_text(
-        f'嘿～ {update.effective_user.first_name}，希望你能跟我立下契約，成爲魔法少女！')
-
+    reply_texts = ['希望你能跟我立下契約，成爲魔法少女！', '與我結成契約吧（◕‿‿◕）', '成爲魔法少女吧！']
+    update.message.reply_text(f'嘿～ {update.effective_user.first_name}，{choice(reply_texts)}')
 
 def pixiv(update: Update, context: CallbackContext) -> None:
     with open('artwork_links.pkl', 'rb') as f:
         artwork_links = pickle.load(f)
-        rand_num = randint(0, len(artwork_links)-1)
-        msg = artwork_links[rand_num]
+        msg = choice(artwork_links)
     update.message.reply_text(msg)
 
 
